@@ -3,8 +3,19 @@ typedef int item;
 struct Nodo {
   item dato;
   Nodo* siguiente;
-};
+} typedef Nodo;
 typedef Nodo* Lista;
+
+
+Lista insertar(Lista l, item dato){
+  Nodo* nuevoNodo;
+  nuevoNodo = new Nodo;
+  nuevoNodo->dato = dato;
+  nuevoNodo->siguiente = l;
+  l  = nuevoNodo;
+  return l;
+}
+
 
 
 // 1.
