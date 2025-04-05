@@ -45,6 +45,19 @@ bool estaEnLaListaRecursiva(Lista L, item buscado){
   
 }
 
+void insertarAlFinalRecursiva(Lista L, item dato){
+  if (L->siguiente == nullptr)
+  {
+    Nodo* nuevoNodo;
+    nuevoNodo = new Nodo;
+    nuevoNodo->dato = dato;
+    nuevoNodo->siguiente = L->siguiente;
+    L->siguiente = nuevoNodo;
+  } else {
+    insertarAlFinalRecursiva(L->siguiente, dato);
+  }
+}
+
 int main(){
   Lista miLista;
   miLista = crearLista();
@@ -60,6 +73,7 @@ int main(){
   printf("\nLONGITUD CON RECURSIVIDAD: %d\n", longitudRecursiva(miLista));
   item buscar = 0;
   printf("\nBUSCAR %d CON RECURSIVIDAD: %s ESTA\n", buscar, estaEnLaListaRecursiva(miLista, buscar) ? "SI": "NO");
-
+  insertarAlFinalRecursiva(miLista, 15);
+  imprimirRecursiva(miLista);
   return 0;
 }
