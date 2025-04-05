@@ -58,6 +58,17 @@ void insertarAlFinalRecursiva(Lista L, item dato){
   }
 }
 
+void eliminarCoincidenciasRecursiva(Lista *L, item dato){
+  if ((*L) != nullptr){
+    if ((*L)->dato == dato){
+      Nodo *aux = (*L);
+      (*L) = (*L)->siguiente;
+      delete(aux);
+      eliminarCoincidenciasRecursiva(L, dato);
+    }
+  }
+}
+
 int main(){
   Lista miLista;
   miLista = crearLista();
@@ -65,7 +76,10 @@ int main(){
   miLista = insertar(miLista, 1);
   miLista = insertar(miLista, 2);
   miLista = insertar(miLista, 3);
+  miLista = insertar(miLista, 2);
+  miLista = insertar(miLista, 2);
   miLista = insertar(miLista, 4);
+  miLista = insertar(miLista, 2);
   puts("IMPRIMIR NORMAL:");
   imprimirRecursiva(miLista);
   puts("\nIMPRIMIR EN REVERSA:");
@@ -74,6 +88,9 @@ int main(){
   item buscar = 0;
   printf("\nBUSCAR %d CON RECURSIVIDAD: %s ESTA\n", buscar, estaEnLaListaRecursiva(miLista, buscar) ? "SI": "NO");
   insertarAlFinalRecursiva(miLista, 15);
+  imprimirRecursiva(miLista);
+  puts("");
+  eliminarCoincidenciasRecursiva(&miLista, 2);
   imprimirRecursiva(miLista);
   return 0;
 }
