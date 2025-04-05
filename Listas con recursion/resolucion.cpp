@@ -23,6 +23,27 @@ void imprimirRecursivaReversa(Lista L){
   }
 }
 
+int longitudRecursiva(Lista L){
+  if (L == nullptr)
+  {
+    return 0;
+  }
+  else
+  {
+    return (1+longitudRecursiva(L->siguiente));
+  }
+  
+}
+
+bool estaEnLaListaRecursiva(Lista L, item buscado){
+  if (L == nullptr)
+  {
+    return false;
+  }
+  if (L->dato == buscado) return true;
+  return false || estaEnLaListaRecursiva(L->siguiente, buscado);
+  
+}
 
 int main(){
   Lista miLista;
@@ -36,5 +57,9 @@ int main(){
   imprimirRecursiva(miLista);
   puts("\nIMPRIMIR EN REVERSA:");
   imprimirRecursivaReversa(miLista);
+  printf("\nLONGITUD CON RECURSIVIDAD: %d\n", longitudRecursiva(miLista));
+  item buscar = 0;
+  printf("\nBUSCAR %d CON RECURSIVIDAD: %s ESTA\n", buscar, estaEnLaListaRecursiva(miLista, buscar) ? "SI": "NO");
+
   return 0;
 }
