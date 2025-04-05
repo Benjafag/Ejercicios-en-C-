@@ -4,14 +4,23 @@
 void imprimirRecursiva(Lista L){
   if (L == nullptr)
   {
-    printf(" ");
+    printf("");
   }
   else
   {
     printf("[%d]->", L->dato);
     imprimirRecursiva(L->siguiente);
+  }  
+}
+
+void imprimirRecursivaReversa(Lista L){
+  if (L == nullptr)
+  {
+    printf("");
+  } else {
+    imprimirRecursivaReversa(L->siguiente);
+    printf("[%d]->", L->dato);
   }
-  
 }
 
 
@@ -23,6 +32,9 @@ int main(){
   miLista = insertar(miLista, 2);
   miLista = insertar(miLista, 3);
   miLista = insertar(miLista, 4);
+  puts("IMPRIMIR NORMAL:");
   imprimirRecursiva(miLista);
+  puts("\nIMPRIMIR EN REVERSA:");
+  imprimirRecursivaReversa(miLista);
   return 0;
 }
