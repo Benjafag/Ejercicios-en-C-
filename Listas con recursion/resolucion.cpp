@@ -58,14 +58,18 @@ void insertarAlFinalRecursiva(Lista L, item dato){
   }
 }
 
-void eliminarCoincidenciasRecursiva(Lista *L, item dato){
-  if ((*L) != nullptr){
-    if ((*L)->dato == dato){
-      Nodo *aux = (*L);
-      (*L) = (*L)->siguiente;
+Lista eliminarCoincidenciasRecursiva(Lista L, item dato){
+  if (L == nullptr){
+    return L;
+  } else {
+    L->siguiente = eliminarCoincidenciasRecursiva(L->siguiente, dato);
+    if (L->dato == dato)
+    {
+      Nodo * aux = L;
+      L = L->siguiente;
       delete(aux);
-      eliminarCoincidenciasRecursiva(L, dato);
     }
+    return L;
   }
 }
 
@@ -90,7 +94,7 @@ int main(){
   insertarAlFinalRecursiva(miLista, 15);
   imprimirRecursiva(miLista);
   puts("");
-  eliminarCoincidenciasRecursiva(&miLista, 2);
+  miLista = eliminarCoincidenciasRecursiva(miLista, 2);
   imprimirRecursiva(miLista);
   return 0;
 }
